@@ -1,0 +1,105 @@
+* {
+	box-sizing: border-box;
+}
+
+body {
+	background-color: #f1f1f1;
+}
+
+form {
+	background-color: #ffffff;
+	margin: 100px auto;
+	padding: 15px;
+	width: 70%;
+	min-width: 270px;
+	line-height:1.5;
+}
+
+h1 {
+	text-align: center; 
+	color: #f35b1c;
+	font-size:40px;
+	font-family:"Arial Black", Arial, sans-serif;
+}
+
+@media only screen and (max-width: 600px) {
+	h1{
+		text-align: center; 
+		color: #f35b1c;
+		font-size:30px;
+		font-family:"Arial Black", Arial, sans-serif;
+	}
+}
+
+h3 {
+	text-align: center; 
+	color: #512b2b;
+	font-size:18px;
+	font-family:Charcoal ,Arial, sans-serif;
+	font-weight:bold;
+	padding-bottom:20px;
+}
+
+p, label{
+	color:#512b2b;
+	font-family:Arial, sans-serif;
+	font-size:15px;
+	margin-right:10px;
+}
+
+input {
+	color:#512b2b;
+	font-size: 15px;
+	border: 1px solid #c6c6c6;
+	border-radius:3px;
+	margin:-5px 0px 0px 0px;
+	padding:4px 6px 3px 6px;
+	vertical-align:middle;
+}
+
+span{
+	color:#512b2b;
+	font-family:Arial, sans-serif;
+	padding:2px 1px 2px 1px;
+	border-radius:3px;
+	background-color:#f9ded3;
+	display:table-cell;
+	margin-top:10px;
+}
+
+.textfield{
+	-moz-appearance:textfield;
+	width:68px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+.tab {
+	display: block;
+	width:85%;
+	max-width:600px;
+	margin:auto;
+}
+
+button {
+	background-color: #fec202;
+	color: #222;
+	border: none;
+	padding: 8px 10px;
+	font-size: 14px;
+	cursor: pointer;
+	border-radius:2px;
+	margin:20px 0px;
+}
+
+button:hover {
+	background-color: #e8b100;
+}
+
+#prevBtn {
+	background-color: #bbbbbb;
+}

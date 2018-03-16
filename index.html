@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="style.css">
+<script src="script.js"></script>
+
+<body>
+	<div ng-app="loanApp" ng-controller="loanCtrl">
+		<form name="loanForm" novalidate>
+
+			<div class="tab" ng-form="tabNum1" ng-hide="i!=0" ng-show="i==0">
+				<h1>Vartojimo paskolos ir kredito linijos skaičiuoklė</h1>
+			</div>
+
+			<div class="tab" name="tabNum2" ng-form="tabNum2" ng-hide="i!=1" ng-show="i==1">
+				<h3>Informacija apie jūsų pageidaujamą paskolą</h3>
+				<p>Pageidaujama paskolos suma:
+				<input type="number" class="textfield" ng-model="loanSize" name="loanSize"
+						required
+						min="500" 
+						max="20000" 
+						onkeypress="return isNumberKey(event)">
+				Eur.
+				</p>
+				<span ng-show="submitted && tabNum2.loanSize.$invalid" >
+					<span ng-show="tabNum2.loanSize.$error.required">Įveskite paskolos sumą.</span>
+				</span>
+				<span ng-show="tabNum2.loanSize.$dirty && tabNum2.loanSize.$invalid">
+					<span ng-show="tabNum2.loanSize.$error.min">Mažiausia suma 500Eur.</span>
+					<span ng-show="tabNum2.loanSize.$error.max">Didžiausia suma 20000Eur.</span>
+				</span>
+			</div>
+
+			<div class="tab" ng-form="tabNum3" ng-hide="i!=2" ng-show="i==2">
+				<h3>Informacija apie jūsų pageidaujamą paskolą</h3>
+				<p>Paskolą imsiu: </p>
+				<div ng-init="numOfPeople=1"></div>
+				<input id="numOfPeople1" type="radio" ng-model="numOfPeople" ng-value="1" />
+				<label for="numOfPeople1">Vienas  </label>
+				<input id="numOfPeople2" type="radio" ng-model="numOfPeople" ng-value="2" />
+				<label for="numOfPeople2">Su sutuoktiniu (bendraskoliu)</label>
+			</div>
+
+			<div class="tab" ng-form="tabNum4" ng-hide="i!=3" ng-show="i==3">
+				<h3>Informacija apie {{numOfPeople == "1" ? "jūsų pajamas" : "jūsų ir bendraskolio pajamas"}}</h3>
+				<p>{{numOfPeople == "1" ? "Jūsų" : "Jūsų ir sutuoktinio (bendraskolio)"}} grynosios mėnesio pajamos
+					<input type="number" class="textfield" ng-model="income" name="income"
+							required
+							min="245" 
+							max="3000" 
+							onkeypress="return isNumberKey(event)">
+							Eur.
+				</p>
+				<span ng-show="submitted && tabNum4.income.$invalid">
+					<span ng-show="tabNum4.income.$error.required">Įveskite pajamų sumą.</span>
+				</span>
+				<span ng-show="tabNum4.income.$dirty && tabNum4.income.$invalid">
+					<span ng-show="tabNum4.income.$error.min">Mažiausia suma 245Eur.</span>
+					<span ng-show="tabNum4.income.$error.max">Didžiausia suma 3000Eur.</span>
+				</span>
+			</div>
+
+			<div class="tab" ng-form="tabNum5" ng-hide="i!=4" ng-show="i==4">
+				<h3>Informacija apie jūsų {{numOfPeople == "1" ? "(šeimos)" : "ir bendraskolio"}} finansinius įsipareigojimus</h3>
+				<p>Ar turite banke „Swedbank“ arba kitose kredito įstaigose paimtų ir dar negrąžintų paskolų arba esate tokių paskolų laiduotojas?</p>
+				<div ng-init="otherLoans=1"></div>
+				<input id="loan1" type="radio" ng-model="otherLoans" ng-value="1"/>
+				<label for="loan1">Ne</label>
+				<input id="loan2" type="radio" ng-model="otherLoans" ng-value="2" />
+				<label for="loan2">Taip</label>
+			</div>
+
+			<div class="tab" ng-form="tabNum6" ng-hide="i!=5" ng-show="i==5">
+				<h3>Jūsų duomenys</h3>
+				<p>Pageidaujama paskolos suma: {{loanSize}}Eur.</p>
+				<p>Paskolą imsite {{numOfPeople == "1" ? "vienas" : "su sutuoktiniu (bendraskoliu)"}}.</p>
+				<p>{{numOfPeople == "1" ? "Jūsų" : "Jūsų ir sutuoktinio (bendraskolio)"}} grynosios mėnesio pajamos: {{income}}Eur.</p>
+				<p>Šiuo metu {{otherLoans == "1" ? "ne" : ""}}turite banke „Swedbank“ arba kitose kredito įstaigose paimtų ir dar negrąžintų paskolų.</p>
+			</div>
+
+			<div style="overflow:auto;width:100%;">
+				<div style="display: table; margin: 0 auto;">
+					<button type="button" id="prevBtn" ng-click="i=i-1" ng-hide="i<=1">Atgal</button>
+					<button type="button" id="nextBtn" ng-click="nextTab()" ng-hide="i==loanForm.$$controls.length-1">{{nextTxt}}</button>
+				</div>
+			</div>
+			
+		</form>
+	</div>
+</body>
+</html>
